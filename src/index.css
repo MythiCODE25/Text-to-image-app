@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #020203;
+  --bg-base: #050506;
+  --bg-elevated: #0a0a0c;
+  --surface: rgba(255, 255, 255, 0.05); /* Frosted glass */
+  --foreground: #EDEDEF;
+  --foreground-muted: #8A8F98;
+  --accent: #5E6AD2;
+  --accent-glow: rgba(94, 106, 210, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.08); /* Hairline */
+  
+  --radius-card: 16px;
+  --easing-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --blur-intensity: 20px;
+
+  font-family: 'Outfit', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--foreground);
+  background-color: var(--bg-deep);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
