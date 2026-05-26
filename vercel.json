@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://router.huggingface.co/$1"
+      "destination": "https://api-inference.huggingface.co/$1"
     },
     {
       "source": "/(.*)",

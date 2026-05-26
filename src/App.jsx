@@ -15,7 +15,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
+        "/api/models/stabilityai/stable-diffusion-xl-base-1.0",
         {
           headers: {
             Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}`,
