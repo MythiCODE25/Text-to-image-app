@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api-inference.huggingface.co',
+        target: 'https://router.huggingface.co',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

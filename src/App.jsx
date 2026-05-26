@@ -15,14 +15,17 @@ function App() {
 
     try {
       const response = await fetch(
-        "/api/models/stabilityai/stable-diffusion-xl-base-1.0",
+        "/api/together/v1/images/generations",
         {
           headers: {
             Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}`,
             "Content-Type": "application/json",
           },
           method: "POST",
-          body: JSON.stringify({ inputs: prompt }),
+          body: JSON.stringify({
+            prompt: prompt,
+            model: "stabilityai/stable-diffusion-xl-base-1.0",
+          }),
         }
       );
 
@@ -30,9 +33,25 @@ function App() {
         throw new Error('Failed to generate image. Please try again.');
       }
 
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      setImageUrl(objectUrl);
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const json = await response.json();
+        if (json.data && json.data[0]) {
+          if (json.data[0].url) {
+            setImageUrl(json.data[0].url);
+          } else if (json.data[0].b64_json) {
+            setImageUrl(`data:image/png;base64,${json.data[0].b64_json}`);
+          } else {
+            throw new Error('Failed to generate image. No image data found in response.');
+          }
+        } else {
+          throw new Error('Failed to generate image. Unexpected response format.');
+        }
+      } else {
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        setImageUrl(objectUrl);
+      }
     } catch (err) {
       console.error("Error generating image:", err);
       setError(err.message);
