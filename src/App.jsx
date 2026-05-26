@@ -15,7 +15,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "/api/together/v1/images/generations",
+        "https://router.huggingface.co/together/v1/images/generations",
         {
           headers: {
             Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}`,
